@@ -51,7 +51,7 @@ const LeyendaError = styled.p`
   font-size: 12px;
   margin-bottom: 0;
   color: ${colores.error};
-  /* display: none; */
+  display: none;
 `;
 
 const IconoValidacion = styled(FontAwesomeIcon)`
@@ -60,7 +60,7 @@ const IconoValidacion = styled(FontAwesomeIcon)`
   bottom: 14px;
   z-index: 100;
   font-size: 1rem;
-  /* opacity: 0; */
+  opacity: 0;
 `;
 
 const ContenedorTerminos = styled.div`
@@ -73,7 +73,7 @@ const ContenedorTerminos = styled.div`
 
 const ContenerBotonCentradao = styled.div`
   display: flex;
-  justify-content: column;
+  flex-direction: column;
   align-items: center;
   grid-column: span 2;
 `;
@@ -89,6 +89,34 @@ const Boton = styled.button`
   border-radius: 3px;
   cursor: pointer;
   transition: 0.1s ease all;
+
+  &:hover {
+    box-shadow: 3px 0 30px rgba(163, 163, 163, 1);
+  }
+`;
+
+const MensajeExito = styled.p`
+  font-size: 14px;
+  color: ${colores.exito};
+  display: none;
+`;
+
+const MensajeError = styled.p`
+  height: 45px;
+  line-height: 45px;
+  background: #f64060;
+  padding: 0px 15px;
+  border-radius: 3px;
+  grid-column: span 2;
+
+  p {
+    margin: 0;
+    text-align: center;
+  }
+
+  b {
+    margin-left: 10px;
+  }
 `;
 
 export {
@@ -99,5 +127,8 @@ export {
   LeyendaError,
   IconoValidacion,
   ContenedorTerminos,
+  ContenerBotonCentradao,
   Boton,
+  MensajeExito,
+  MensajeError,
 };
