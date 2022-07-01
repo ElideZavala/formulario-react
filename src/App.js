@@ -6,6 +6,10 @@ import {
   IconoValidacion,
   LeyendaError,
   Boton,
+  ContenerBotonCentradao,
+  ContenedorTerminos,
+  MensajeExito,
+  MensajeError,
 } from "./elementos/Formularios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -29,22 +33,22 @@ function App() {
             Hoy es un excelente dia para dar gracias..
           </LeyendaError>
         </div>
-        <div>
+        <ContenedorTerminos>
           <Label>
             <input type="checkbox" name="terminos" id="terminos" />
             Acepto los terminos y condiciones
           </Label>
-        </div>
-        <div>
+        </ContenedorTerminos>
+        <MensajeError>
           <p>
             <FontAwesomeIcon icon={faExclamationTriangle} />
             <b>Error:</b> Por favor rellena el formulario correctamente.
           </p>
-        </div>
-        <div>
+        </MensajeError>
+        <ContenerBotonCentradao>
           <Boton type="submit">Enviar</Boton>
-          <p>Formulario enviado exitosamente!</p>
-        </div>
+          <MensajeExito>Formulario enviado exitosamente!</MensajeExito>
+        </ContenerBotonCentradao>
       </Formulario>
     </main>
   );
