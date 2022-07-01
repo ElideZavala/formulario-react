@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+::selection {
+    background: lightblue;
+    color: lightcoral;
+}
+
+body { 
+    background-color: lightblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+main {
+    padding: 40px;
+    font-family: 'Arima', cursive;
+    background-color: lightcoral;
+    border-radius: 8px;
+    box-shadow: 0 0 10px lightcoral;
+}
+
+
+/* .form__usuario {
+    font-size: 2rem;
+}
+
+.form__input {
+    border: none;
+    outline: none;
+    padding: .8rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: lightblue;  
+}
+
+.form__para {
+    font-size: 1.5rem;
+} */
