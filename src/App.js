@@ -1,10 +1,6 @@
 import {
   Formulario,
   Label,
-  GrupoInput,
-  Input,
-  IconoValidacion,
-  LeyendaError,
   Boton,
   ContenerBotonCentradao,
   ContenedorTerminos,
@@ -14,37 +10,47 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
-  faCircleCheck,
   faCircleXmark,
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
+import Input from "./componentes/InputComponent";
 
 function App() {
   return (
     <main>
       <Formulario action="">
-        <div>
-          <Label htmlFor="nombre">Usuario</Label>
-          <GrupoInput>
-            <Input type="text" placeholder="usuario" id="nombre" />
-            <IconoValidacion icon={faCircleCheck} />
-          </GrupoInput>
-          <LeyendaError>
-            Hoy es un excelente dia para dar gracias..
-          </LeyendaError>
-        </div>
+        <Input
+          tipo="text"
+          label="Usuario"
+          placeholder="Ingresa tu Usuario"
+          name="usuario"
+          leyendaError="El usuario tiene que ser de 4 a 16 digitos y solo puede contener numeros letras y guion bajo"
+          expresionRegular=""
+        />
+
+        <Input
+          tipo="password"
+          label="Password"
+          placeholder="Ingresa tu Password"
+          name="password"
+          leyendaError="dasdas"
+          expresionRegular="dasdasdas"
+        />
+
         <ContenedorTerminos>
           <Label>
             <input type="checkbox" name="terminos" id="terminos" />
             Acepto los terminos y condiciones
           </Label>
         </ContenedorTerminos>
-        <MensajeError>
-          <p>
-            <FontAwesomeIcon icon={faExclamationTriangle} />
-            <b>Error:</b> Por favor rellena el formulario correctamente.
-          </p>
-        </MensajeError>
+        {false && (
+          <MensajeError>
+            <p>
+              <FontAwesomeIcon icon={faExclamationTriangle} />
+              <b>Error:</b> Por favor rellena el formulario correctamente.
+            </p>
+          </MensajeError>
+        )}
         <ContenerBotonCentradao>
           <Boton type="submit">Enviar</Boton>
           <MensajeExito>Formulario enviado exitosamente!</MensajeExito>
