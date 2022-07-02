@@ -8,7 +8,7 @@ import {
 
 import {
   faCircleCheck,
-  faCircleXmark,
+  faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 const InputComponent = ({
@@ -18,15 +18,47 @@ const InputComponent = ({
   name,
   leyendaError,
   expresionRegular,
+  estado,
+  cambiarEstado,
 }) => {
+  const onChange = (e) => {
+    cambiarEstado({ ...estado, campo: e.target.value });
+  };
+
+  const validacion = () => {
+    if (expresionRegular) {
+      // Comprobar un valor contra la forma. contra la expresion regular
+      if (expresionRegular.test(estado.campo)) {
+        // Si es correcto. cambiamos el estado de valido a true
+        cambiarEstado({ ...estado, valido: "true" });
+      } else {
+        cambiarEstado({ ...estado, valido: "false" });
+      }
+    }
+  };
+
   return (
     <div>
-      <Label htmlFor={name}>{label}</Label>
+      <Label htmlFor={name} valido={estado.valido}>
+        {label}
+      </Label>
       <GrupoInput>
-        <Input type={tipo} placeholder={placeholder} id={name} />
-        <IconoValidacion icon={faCircleCheck} />
+        <Input
+          type={tipo}
+          placeholder={placeholder}
+          id={name}
+          value={estado.campo}
+          onChange={onChange}
+          onKeyUp={validacion}
+          onBlur={validacion}
+          valido={estado.valido}
+        />
+        <IconoValidacion
+          icon={estado.valido === "true" ? faCircleCheck : faTimesCircle}
+          valido={estado.valido}
+        />
       </GrupoInput>
-      <LeyendaError>{leyendaError}</LeyendaError>
+      <LeyendaError valido={estado.valido}>{leyendaError}</LeyendaError>
     </div>
   );
 };
