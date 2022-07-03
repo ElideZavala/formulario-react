@@ -24,6 +24,7 @@ function App() {
   const [password2, cambiarPassword2] = useState({ campo: "", valido: null });
   const [correo, cambiarCorreo] = useState({ campo: "", valido: null });
   const [telefono, cambiarTelefono] = useState({ campo: "", valido: null });
+  // const [terminos, cambiarTerminos] = useState(false)
 
   const expresiones = {
     // usuario: /^[a-zA-Z0-9_-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -32,6 +33,22 @@ function App() {
     password: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     telefono: /^\d{7,14}$/, // 7 a 14 numeros.
+  };
+
+  const validarPassword2 = () => {
+    if (password.campo.length > 0) {
+      if (password.campo !== password2.campo) {
+        // cambiarPassword2((prevState) => {
+        //   return { ...prevState, valido: "false" };
+        // });
+        cambiarPassword2({ ...password2, valido: "false" });
+      } else {
+        // cambiarPassword2((prevState) => {
+        //   return { ...prevState, valido: "true" };
+        // });
+        cambiarPassword2({ ...password2, valido: "true" });
+      }
+    }
   };
 
   return (
@@ -77,7 +94,7 @@ function App() {
           name="password2"
           leyendaError="Ambas contraseñas deben ser iguales"
           // Le podemos pasar una funcion que quremos que ejecute cuando haya un cambio en el input
-          // function={validarPassword2}
+          funcion={validarPassword2}
         />
 
         <Input

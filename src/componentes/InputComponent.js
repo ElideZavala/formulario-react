@@ -20,6 +20,7 @@ const InputComponent = ({
   expresionRegular,
   estado,
   cambiarEstado,
+  funcion,
 }) => {
   const onChange = (e) => {
     cambiarEstado({ ...estado, campo: e.target.value });
@@ -34,6 +35,10 @@ const InputComponent = ({
       } else {
         cambiarEstado({ ...estado, valido: "false" });
       }
+    }
+
+    if (funcion) {
+      funcion();
     }
   };
 
