@@ -24,11 +24,11 @@ function App() {
   const [password2, cambiarPassword2] = useState({ campo: "", valido: null });
   const [correo, cambiarCorreo] = useState({ campo: "", valido: null });
   const [telefono, cambiarTelefono] = useState({ campo: "", valido: null });
-  // const [terminos, cambiarTerminos] = useState(false)
+  const [terminos, cambiarTerminos] = useState(false);
+  const [formularioValido, cambiarFormularioValido] = useState(null);
 
   const expresiones = {
-    // usuario: /^[a-zA-Z0-9_-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-    usuario: /^[a-z0-9_-]{4,16}$/,
+    usuario: /^[a-zA-Z0-9_-]{4,16}$/, // Letras, numeros, guion y guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     password: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
@@ -51,9 +51,40 @@ function App() {
     }
   };
 
+  const onChangeTerminos = (e) => {
+    cambiarTerminos(e.target.checked);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      usuario.valido === "true" &&
+      nombre.valido === "true" &&
+      password.valido === "true" &&
+      correo.valido === "true" &&
+      telefono.valido === "true" &&
+      terminos
+    ) {
+      // Cambiamos el estado del formulario a true
+      cambiarFormularioValido(true);
+
+      // Limpiamos los campos
+      cambiarUsuario({ campo: "", valido: null });
+      cambiarNombre({ campo: "", valido: null });
+      cambiarPassword({ campo: "", valido: null });
+      cambiarPassword2({ campo: "", valido: null });
+      cambiarCorreo({ campo: "", valido: null });
+      cambiarTelefono({ campo: "", valido: null });
+      cambiarTerminos(false);
+    } else {
+      cambiarFormularioValido(false);
+    }
+  };
+
   return (
     <main>
-      <Formulario action="">
+      <Formulario action="" onSubmit={onSubmit}>
         <Input
           estado={usuario}
           cambiarEstado={cambiarUsuario}
@@ -121,11 +152,17 @@ function App() {
 
         <ContenedorTerminos>
           <Label>
-            <input type="checkbox" name="terminos" id="terminos" />
+            <input
+              type="checkbox"
+              name="terminos"
+              id="terminos"
+              checked={terminos}
+              onChange={onChangeTerminos}
+            />
             Acepto los terminos y condiciones
           </Label>
         </ContenedorTerminos>
-        {false && (
+        {formularioValido === false && (
           <MensajeError>
             <p>
               <FontAwesomeIcon icon={faExclamationTriangle} />
@@ -135,7 +172,10 @@ function App() {
         )}
         <ContenerBotonCentradao>
           <Boton type="submit">Enviar</Boton>
-          <MensajeExito>Formulario enviado exitosamente!</MensajeExito>
+          {formularioValido === true &&
+            setTimeout(() => {
+              <MensajeExito>Formulario enviado exitosamente!</MensajeExito>;
+            }, 3000)}
         </ContenerBotonCentradao>
       </Formulario>
     </main>

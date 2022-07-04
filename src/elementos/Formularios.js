@@ -115,6 +115,10 @@ const ContenedorTerminos = styled.div`
   input {
     margin-right: 10px;
   }
+
+  @media (max-width: 800px) {
+    grid-column: span 1;
+  }
 `;
 
 const ContenerBotonCentradao = styled.div`
@@ -122,6 +126,10 @@ const ContenerBotonCentradao = styled.div`
   flex-direction: column;
   align-items: center;
   grid-column: span 2;
+
+  @media (max-width: 800px) {
+    grid-column: span 1;
+  }
 `;
 
 const Boton = styled.button`
@@ -144,7 +152,6 @@ const Boton = styled.button`
 const MensajeExito = styled.p`
   font-size: 14px;
   color: ${colores.exito};
-  display: none;
 `;
 
 const MensajeError = styled.p`
